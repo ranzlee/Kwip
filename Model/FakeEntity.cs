@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using Reinforced.Typings.Attributes;
 
 namespace Kwip.Domain
 {
-    [TsInterface]
     public class FakeEntity : Entity
     {
         public string Name { get; set; }

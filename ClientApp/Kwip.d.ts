@@ -5,16 +5,16 @@
 declare module Kwip.Domain {
 	export interface IEntity
 	{
-		id: number;
+		id?: number;
 	}
 	export interface IFakeEntity extends IEntity
 	{
-		name: string;
-		rootId: number;
-		parentId: number;
-		parent: IFakeEntity;
-		root: IFakeEntity;
-		children: IFakeEntity[];
-		rootCollection: IFakeEntity[];
+		name?: string;
+		rootId?: number;
+		parentId?: number;
+		parent?: IFakeEntity;
+		root?: IFakeEntity;
+		children?: IFakeEntity[];
+		rootCollection?: IFakeEntity[];
 	}
 }
