@@ -11,10 +11,6 @@ const routes = [
     component: require("./components/counter/counter.vue.html")
   },
   {
-    path: "/fetchdata",
-    component: require("./components/fetchdata/fetchdata.vue.html")
-  },
-  {
     path: "/fetchentity",
     component: require("./components/fetchentity/fetchentity.vue.html")
   }
