@@ -8,7 +8,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-.DS_Store
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -187,6 +186,8 @@ ClientBin/
 *.pfx
 *.publishsettings
 orleans.codegen.cs
+.DS_Store
+kwip.db
 
 # commiting node modules because I had to fix Vue errors in latest build
 # /node_modules
@@ -239,3 +240,4 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+kwip.db
