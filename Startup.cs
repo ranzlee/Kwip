@@ -27,7 +27,7 @@ namespace Kwip
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            }); ;
+            });
             return IoC.Startup.Start(services);
         }
 

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import axios from 'axios';
 
 @Component
 export default class FetchEntityComponent extends Vue {
@@ -12,10 +13,8 @@ export default class FetchEntityComponent extends Vue {
     }
 
     mounted() {
-        fetch('api/SampleData/FakeEntities')
-            .then(response => response.json() as Promise<Kwip.Domain.IFakeEntity[]>)
-            .then(data => {
-                this.entities = data;
-            });
+        axios.get("api/SampleData/FakeEntities").then((response) => {
+            this.entities = <Kwip.Domain.IFakeEntity[]>response.data;
+        });
     }
 }
