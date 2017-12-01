@@ -188,7 +188,8 @@ ClientBin/
 *.publishsettings
 orleans.codegen.cs
 
-/node_modules
+# commiting node modules because I had to fix Vue errors in latest build
+# /node_modules
 
 # RIA/Silverlight projects
 Generated_Code/
