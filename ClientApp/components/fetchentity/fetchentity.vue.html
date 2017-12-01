@@ -1,0 +1,26 @@
+<template>
+    <div>
+        <h1>Fetch Entities</h1>
+
+        <p>This component demonstrates fetching entities from the server.</p>
+
+        <table v-if="entities.length" class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in entities">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p v-else><em>Loading...</em></p>
+    </div>
+</template>
+
+<script src="./fetchentity.ts"></script>

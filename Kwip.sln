@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 15.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kwip", "Kwip.csproj", "{DEED9B78-F5AE-42C8-B8F6-B06C7B4BEFD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEED9B78-F5AE-42C8-B8F6-B06C7B4BEFD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEED9B78-F5AE-42C8-B8F6-B06C7B4BEFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEED9B78-F5AE-42C8-B8F6-B06C7B4BEFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEED9B78-F5AE-42C8-B8F6-B06C7B4BEFD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
