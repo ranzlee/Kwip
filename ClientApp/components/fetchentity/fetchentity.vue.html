@@ -15,18 +15,18 @@
                 <tbody>
                     <tr v-for="item in entities">
                         <td>{{ item.id }}</td>
-                        <td>{{ item.name }}</td>
+                        <td><entity-item :entity="item" /></td>
                     </tr>
                 </tbody>
             </table>
-            
-            <p>Add a new entity</p>
-            
-            <input type="text" v-model="newEntity.name" />
-            <button @click="add()">Add</button>
         </div>
-        
-        <p v-else><em>Loading...</em></p>
+
+        <p v-else><em>Nothing to see here...</em></p>
+
+        <p>Add a new entity</p>
+
+        <input type="text" v-model="newEntity.name" />
+        <button @click="add">Add</button>
     </div>
 </template>
 

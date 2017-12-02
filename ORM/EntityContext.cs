@@ -1,4 +1,5 @@
-﻿using Kwip.Domain;
+﻿using System.Threading.Tasks;
+using Kwip.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -16,6 +17,20 @@ namespace Kwip.ORM
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(_configuration.GetConnectionString("DefaultConnection"));
+        }
+
+        public async Task<T> SaveOrUpdate<T>(T entity) where T : Entity
+        {
+            if (entity.Id == 0)
+            {
+                await base.AddAsync(entity);
+            }
+            else
+            {
+                base.Update(entity);
+            }
+            await base.SaveChangesAsync();
+            return entity;
         }
 
         public DbSet<FakeEntity> FakeEntities { get; set; }

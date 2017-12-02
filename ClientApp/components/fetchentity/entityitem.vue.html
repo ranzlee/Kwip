@@ -1,0 +1,13 @@
+<template>
+    <span v-if="isEditMode">
+        <input type="text" title="edit name" v-model="entity.name"/>
+        <a style="cursor: pointer;" title="save changes" @click="save">save changes</a>
+        <em>- or -</em>
+        <a style="cursor: pointer;" title="cancel" @click="cancel">cancel</a>
+    </span>
+    <span v-else>
+        <a style="cursor: pointer;" :title="'click to edit ' + entity.name" @click="editMode">{{ entity.name }}</a>
+    </span>
+</template>
+
+<script src="./entityitem.ts"></script>

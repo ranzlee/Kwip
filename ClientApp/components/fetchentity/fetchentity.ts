@@ -2,19 +2,27 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import axios from 'axios';
 
-@Component
+@Component({
+  components: {
+    EntityItem: require("./entityitem.vue.html")
+  }
+})
 export default class FetchEntityComponent extends Vue {
-    
-    entities: Kwip.Domain.IFakeEntity[] = [];
-    newEntity: Kwip.Domain.IFakeEntity = {};
+  entities: Kwip.Domain.IFakeEntity[] = [];
+  newEntity: Kwip.Domain.IFakeEntity = {};
 
-    add() {
-        alert(this.newEntity.name);
-    }
+  add(): void {
+    axios
+      .post("api/SampleData/AddOrUpdateFakeEntity", this.newEntity)
+      .then(response => {
+        this.entities.push(<Kwip.Domain.IFakeEntity>response.data);
+        this.newEntity = {};
+      });
+  }
 
-    mounted() {
-        axios.get("api/SampleData/FakeEntities").then((response) => {
-            this.entities = <Kwip.Domain.IFakeEntity[]>response.data;
-        });
-    }
+  mounted(): void {
+    axios.get("api/SampleData/GetFakeEntities").then(response => {
+      this.entities = <Kwip.Domain.IFakeEntity[]>response.data;
+    });
+  }
 }
