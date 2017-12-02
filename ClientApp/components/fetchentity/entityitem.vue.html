@@ -21,7 +21,11 @@
                 </span>
             </td>
             <td style="width: 10%">
-                <button :title="'remove ' + entity.name" @click="remove">remove</button>
+                <button @click="showModal = true">remove</button>
+                <modal v-if="showModal" @no="showModal = false" @yes="remove">
+                    <h3 slot="header">Remove Entity?</h3>
+                    <p slot="body">Are you sure you want to permanently remove {{ entity.name }}?</p>
+                </modal>
             </td>
         </tr>
         <tr v-if="isGroupExpanded">

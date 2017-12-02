@@ -6,7 +6,8 @@ import FetchEntityComponent from './entitygroup';
 
 @Component({
   components: {
-    EntityGroup: require("./entitygroup.vue.html")
+    EntityGroup: require("./entitygroup.vue.html"),
+    Modal: require("../modal/modal.vue.html")
   },
   props: {
     entity: Object
@@ -17,6 +18,7 @@ export default class EntityItemComponent extends Vue {
   clone: Kwip.Domain.IFakeEntity;
   isEditMode: boolean = false;
   isGroupExpanded: boolean = false;
+  showModal: boolean = false;
 
   editMode(): void {
     //keep a pre-edit copy so we can restore state on cancel
