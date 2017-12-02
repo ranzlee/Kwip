@@ -1,5 +1,8 @@
 <template>
     <div>
+        <p>Add a new entity</p>
+        <input type="text" v-model="newEntity.name" />
+        <button @click="add">Add</button>
         <div v-if="entities.length">
             <table class="table">
                 <thead>
@@ -15,9 +18,6 @@
         <p v-else>
             <em>Nothing to see here...</em>
         </p>
-        <p>Add a new entity</p>
-        <input type="text" v-model="newEntity.name" />
-        <button @click="add">Add</button>
     </div>
 </template>
 

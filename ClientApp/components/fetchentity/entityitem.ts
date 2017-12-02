@@ -16,6 +16,7 @@ export default class EntityItemComponent extends Vue {
   clone: Kwip.Domain.IFakeEntity;
   isEditMode: boolean = false;
   isGroupExpanded: boolean = false;
+  rootId: number = 0;
 
   editMode(): void {
     this.clone = services.utilities.deepCopy(this.entity);
@@ -34,5 +35,8 @@ export default class EntityItemComponent extends Vue {
 
   toggleGroup(): void {
     this.isGroupExpanded = !this.isGroupExpanded;
+    if (this.entity.rootId && this.entity.rootId > 0){
+      this.rootId = this.entity.rootId;
+    }
   }
 }

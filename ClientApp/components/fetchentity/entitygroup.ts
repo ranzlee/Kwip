@@ -7,18 +7,21 @@ import axios from "axios";
     EntityItem: require("./entityitem.vue.html")
   },
   props: {
-    parentId: Number
+    parentId: Number,
+    rootId: Number
   }
 })
 export default class FetchEntityComponent extends Vue {
   
     parentId: number;
+    rootId: number;
     entities: Kwip.Domain.IFakeEntity[] = [];
     newEntity: Kwip.Domain.IFakeEntity = {};
 
     add(): void {
         if (this.parentId > 0){
             this.newEntity.parentId = this.parentId;
+            this.newEntity.rootId = this.rootId > 0 ? this.rootId : this.parentId;
         }
         axios
         .post("api/SampleData/AddOrUpdateFakeEntity", this.newEntity)

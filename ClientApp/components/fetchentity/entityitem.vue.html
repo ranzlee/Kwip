@@ -21,7 +21,7 @@
         </tr>
         <tr v-if="isGroupExpanded">
             <td colspan="3">
-                <entity-group :parent-id="entity.id" />
+                <entity-group :parent-id="entity.id" :root-id="rootId" />
             </td>
         </tr>
     </tbody>
