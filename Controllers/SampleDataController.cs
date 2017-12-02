@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +28,45 @@ namespace Kwip.Controllers
             using (var context = _entityContextProvider.GetContext())
             {
                 return context.SaveOrUpdate(fakeEntity);
+            }
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> RemoveFakeEntity([FromBody] FakeEntity fakeEntity)
+        {
+            using (var context = _entityContextProvider.GetContext())
+            {
+                //get entire branch
+                var ent = await context.FakeEntities
+                    .Where(i => fakeEntity.RootId.HasValue ? i.Id == fakeEntity.RootId.Value : i.Id == fakeEntity.Id)
+                    .AsTracking()
+                    .Include(i => i.RootCollection)
+                    .SingleOrDefaultAsync();
+                //create stack to delete
+                if (ent == null) return Ok();
+                ent = ent.Id == fakeEntity.Id 
+                    ? ent 
+                    : ent.RootCollection.SingleOrDefault(i => i.Id == fakeEntity.Id);
+                var stack = new Stack();
+                stack.Push(ent);
+                PushStack(stack, ent.Children);
+                //pop stack and delete
+                while(stack.Count > 0){
+                    context.Remove(stack.Pop());
+                }
+                await context.SaveChangesAsync();
+            }
+            return Ok();
+        }
+
+        private void PushStack(Stack stack, IEnumerable<FakeEntity> l)
+        {
+            foreach (var item in l)
+            {
+                stack.Push(item);
+                if (item.Children != null && item.Children.Any()){
+                    PushStack(stack, item.Children);
+                }
             }
         }
 

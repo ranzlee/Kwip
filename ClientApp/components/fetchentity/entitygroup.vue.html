@@ -1,15 +1,18 @@
 <template>
     <div>
         <p>Add a new entity</p>
-        <input type="text" v-model="newEntity.name" />
-        <button @click="add">Add</button>
+        <input type="text" v-model="newEntity.name">
+        <button @click="add">add</button>
         <div v-if="entities.length">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Groups</th>
                         <th>ID</th>
+                        <th>Parent ID</th>
+                        <th>Root ID</th>
                         <th>Name</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody v-for="item in entities" is="entity-item" :entity="item"></tbody>

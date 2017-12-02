@@ -7,6 +7,4 @@ import axios from 'axios';
     EntityGroup: require("./entitygroup.vue.html")
   }
 })
-export default class FetchEntityComponent extends Vue {
-  rootId: number = 0;
-}
+export default class FetchEntityComponent extends Vue {}
