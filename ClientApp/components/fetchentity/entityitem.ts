@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import axios from 'axios';
+import { services } from '../../services/utilities';
 
 @Component({
   props: {
@@ -13,7 +14,7 @@ export default class EntityItemComponent extends Vue {
   isEditMode: boolean = false;
 
   editMode(): void {
-    this.clone = JSON.parse(JSON.stringify(this.entity));
+    this.clone = services.utilities.deepCopy(this.entity);
     this.isEditMode = true;
   }
 

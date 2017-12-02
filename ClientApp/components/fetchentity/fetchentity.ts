@@ -12,6 +12,7 @@ export default class FetchEntityComponent extends Vue {
   newEntity: Kwip.Domain.IFakeEntity = {};
 
   add(): void {
+    
     axios
       .post("api/SampleData/AddOrUpdateFakeEntity", this.newEntity)
       .then(response => {
