@@ -31,14 +31,15 @@ namespace Kwip.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IEnumerable<FakeEntity>> GetFakeEntities()
+        public async Task<IEnumerable<FakeEntity>> GetFakeEntities(int parentId)
         {
+            int? pid = null;
+            if (parentId != 0) pid = parentId;
             using (var context = _entityContextProvider.GetContext())
             {
                 var l = await context.FakeEntities
-                    .Where(i => i.Parent == null)
-                    .AsTracking()
-                    .Include(i => i.RootCollection)
+                    .Where(i => i.ParentId == pid)
+                    .AsNoTracking()
                     .ToListAsync();
                 return l;
             }

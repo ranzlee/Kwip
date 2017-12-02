@@ -1,0 +1,24 @@
+<template>
+    <div>
+        <div v-if="entities.length">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Groups</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody v-for="item in entities" is="entity-item" :entity="item"></tbody>
+            </table>
+        </div>
+        <p v-else>
+            <em>Nothing to see here...</em>
+        </p>
+        <p>Add a new entity</p>
+        <input type="text" v-model="newEntity.name" />
+        <button @click="add">Add</button>
+    </div>
+</template>
+
+<script src="./entitygroup.ts"></script>

@@ -1,20 +1,30 @@
 <template>
-    <tr>
-        <td>{{ entity.id }}</td>
-        <td>
-            <span v-if="isEditMode">
-                <input type="text" title="edit name" v-model="entity.name" /> &nbsp;
-                <a style="cursor: pointer;" title="save changes" @click="save">save changes</a>
-                &nbsp;
-                <em>- or -</em>
-                &nbsp;
-                <a style="cursor: pointer;" title="cancel" @click="cancel">cancel</a>
-            </span>
-            <span v-else>
-                <a style="cursor: pointer;" :title="'click to edit ' + entity.name" @click="editMode">{{ entity.name }}</a>
-            </span>
-        </td>
-    </tr>
+    <tbody>
+        <tr>
+            <td>
+                <button title="show" @click="toggleGroup">{{ isGroupExpanded ? '-' : '+' }}</button>
+            </td>
+            <td>{{ entity.id }}</td>
+            <td>
+                <span v-if="isEditMode">
+                    <input type="text" title="edit name" v-model="entity.name" /> &nbsp;
+                    <a style="cursor: pointer;" title="save changes" @click="save">save changes</a>
+                    &nbsp;
+                    <em>- or -</em>
+                    &nbsp;
+                    <a style="cursor: pointer;" title="cancel" @click="cancel">cancel</a>
+                </span>
+                <span v-else>
+                    <a style="cursor: pointer;" :title="'click to edit ' + entity.name" @click="editMode">{{ entity.name }}</a>
+                </span>
+            </td>
+        </tr>
+        <tr v-if="isGroupExpanded">
+            <td colspan="3">
+                <entity-group :parent-id="entity.id" />
+            </td>
+        </tr>
+    </tbody>
 </template>
 
 <script src="./entityitem.ts"></script>

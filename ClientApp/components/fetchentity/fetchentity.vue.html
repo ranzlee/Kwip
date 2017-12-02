@@ -2,29 +2,7 @@
     <div>
         <h1>Fetch Entities</h1>
         <p>This component demonstrates fetching entities from the server.</p>
-
-        <div>
-            <div v-if="entities.length">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="item in entities" is="entity-item" :entity="item"></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p v-else>
-                <em>Nothing to see here...</em>
-            </p>
-            <p>Add a new entity</p>
-            <input type="text" v-model="newEntity.name" />
-            <button @click="add">Add</button>
-        </div>
-
+        <entity-group :parent-id="rootId"/>
     </div>
 </template>
 
