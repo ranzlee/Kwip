@@ -15,9 +15,7 @@ export default class FetchEntityComponent extends Vue {
     add(): void {
         if (this.parent != null){
             this.newEntity.parentId = this.parent.id;
-            this.newEntity.rootId = (this.parent.rootId == null) 
-                ? (this.newEntity.rootId = this.parent.id) 
-                : (this.newEntity.rootId = this.parent.rootId);
+            this.newEntity.rootId = this.parent.rootId;
         }
         axios
         //add new entity - handle promise return since we need the ID from EF synced with client object
