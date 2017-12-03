@@ -7,7 +7,7 @@ import FetchEntityComponent from './entitygroup';
 @Component({
   components: {
     EntityGroup: require("./entitygroup.vue.html"),
-    Modal: require("../modal/modal.vue.html")
+    YesNoModal: require("../modal/yesnomodal.vue.html")
   },
   props: {
     entity: Object
@@ -39,6 +39,7 @@ export default class EntityItemComponent extends Vue {
   }
 
   remove(): void {
+    this.showModal = false;
     //don't wait for promise return - just do it!
     axios.post("api/SampleData/RemoveFakeEntity", this.entity);
     //call the parent component remove method since binding is one-way (parent -> child)

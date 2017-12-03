@@ -23,11 +23,16 @@ namespace Kwip.Controllers
         }
 
         [HttpPost("[action]")]
-        public Task<FakeEntity> AddOrUpdateFakeEntity([FromBody] FakeEntity fakeEntity)
+        public async Task<FakeEntity> AddOrUpdateFakeEntity([FromBody] FakeEntity fakeEntity)
         {
             using (var context = _entityContextProvider.GetContext())
             {
-                return context.SaveOrUpdate(fakeEntity);
+                var ent = await context.SaveOrUpdate(fakeEntity);
+                if (!ent.ParentId.HasValue){
+                    ent.RootId = ent.Id;
+                    ent = await context.SaveOrUpdate(fakeEntity);
+                }
+                return ent;
             }
         }
 
@@ -49,7 +54,7 @@ namespace Kwip.Controllers
                     : ent.RootCollection.SingleOrDefault(i => i.Id == fakeEntity.Id);
                 var stack = new Stack();
                 stack.Push(ent);
-                PushStack(stack, ent.Children);
+                if (ent.Children != null) PushStack(stack, ent.Children);
                 //pop stack and delete
                 while(stack.Count > 0){
                     context.Remove(stack.Pop());

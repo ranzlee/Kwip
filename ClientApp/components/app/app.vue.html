@@ -5,6 +5,7 @@
                 <menu-component />
             </div>
             <div class="col-sm-9">
+                <fatal-modal v-if="showModal" @ok="showModal = false"></fatal-modal>
                 <router-view></router-view>
             </div>
         </div>
